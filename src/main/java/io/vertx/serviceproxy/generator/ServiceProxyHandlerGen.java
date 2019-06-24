@@ -130,6 +130,7 @@ public class ServiceProxyHandlerGen extends Generator<ProxyModel> {
       .indent()
       .stmt("JsonObject json = msg.body()")
       .stmt("String action = msg.headers().get(\"action\")")
+      .stmt("this.vertx.getOrCreateContext().put(\"client_app_id\",msg.headers().get(\"client_app_id\"));")
       .stmt("if (action == null) throw new IllegalStateException(\"action not specified\")")
       .stmt("accessed()")
       .code("switch (action) {\n")
