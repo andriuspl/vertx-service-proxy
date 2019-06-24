@@ -133,6 +133,7 @@ public class ServiceProxyGen extends Generator<ProxyModel> {
     writer.newLine();
     writer.stmt("DeliveryOptions _deliveryOptions = (_options != null) ? new DeliveryOptions(_options) : new DeliveryOptions()");
     writer.stmt("_deliveryOptions.addHeader(\"action\", \"" + method.getName() + "\")");
+    writer.stmt("_deliveryOptions.addHeader(\"client_app_id\", _vertx.getOrCreateContext().get(\"client_app_id\"))");
     if (hasResultHandler) {
       generateSendCallWithResultHandler(lastParam, writer);
     } else {
